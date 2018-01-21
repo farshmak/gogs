@@ -19,14 +19,14 @@ import (
 	"github.com/urfave/cli"
 	log "gopkg.in/clog.v1"
 
-	"github.com/gogits/git-module"
+	"github.com/farshmak/git-module"
 
-	"github.com/gogits/gogs/models"
-	"github.com/gogits/gogs/pkg/httplib"
-	"github.com/gogits/gogs/pkg/mailer"
-	"github.com/gogits/gogs/pkg/setting"
-	"github.com/gogits/gogs/pkg/template"
-	http "github.com/gogits/gogs/routes/repo"
+	"github.com/farshmak/gogs/models"
+	"github.com/farshmak/gogs/pkg/httplib"
+	"github.com/farshmak/gogs/pkg/mailer"
+	"github.com/farshmak/gogs/pkg/setting"
+	"github.com/farshmak/gogs/pkg/template"
+	http "github.com/farshmak/gogs/routes/repo"
 )
 
 var (

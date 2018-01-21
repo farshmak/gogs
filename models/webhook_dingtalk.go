@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gogits/git-module"
-	api "github.com/gogits/go-gogs-client"
+	"github.com/farshmak/git-module"
+	api "github.com/farshmak/go-gogs-client"
 )
 
 const (

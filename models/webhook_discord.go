@@ -10,10 +10,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gogits/git-module"
-	api "github.com/gogits/go-gogs-client"
+	"github.com/farshmak/git-module"
+	api "github.com/farshmak/go-gogs-client"
 
-	"github.com/gogits/gogs/pkg/setting"
+	"github.com/farshmak/gogs/pkg/setting"
 )
 
 type DiscordEmbedFooterObject struct {

@@ -16,10 +16,10 @@ import (
 	"github.com/urfave/cli"
 	log "gopkg.in/clog.v1"
 
-	"github.com/gogits/gogs/models"
-	"github.com/gogits/gogs/models/errors"
-	"github.com/gogits/gogs/pkg/setting"
-	http "github.com/gogits/gogs/routes/repo"
+	"github.com/farshmak/gogs/models"
+	"github.com/farshmak/gogs/models/errors"
+	"github.com/farshmak/gogs/pkg/setting"
+	http "github.com/farshmak/gogs/routes/repo"
 )
 
 const (

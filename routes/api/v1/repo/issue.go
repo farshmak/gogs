@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"strings"
 
-	api "github.com/gogits/go-gogs-client"
+	api "github.com/farshmak/go-gogs-client"
 
-	"github.com/gogits/gogs/models"
-	"github.com/gogits/gogs/models/errors"
-	"github.com/gogits/gogs/pkg/context"
-	"github.com/gogits/gogs/pkg/setting"
+	"github.com/farshmak/gogs/models"
+	"github.com/farshmak/gogs/models/errors"
+	"github.com/farshmak/gogs/pkg/context"
+	"github.com/farshmak/gogs/pkg/setting"
 )
 
 func listIssues(c *context.APIContext, opts *models.IssuesOptions) {

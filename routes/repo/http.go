@@ -21,11 +21,11 @@ import (
 	log "gopkg.in/clog.v1"
 	"gopkg.in/macaron.v1"
 
-	"github.com/gogits/gogs/models"
-	"github.com/gogits/gogs/models/errors"
-	"github.com/gogits/gogs/pkg/context"
-	"github.com/gogits/gogs/pkg/setting"
-	"github.com/gogits/gogs/pkg/tool"
+	"github.com/farshmak/gogs/models"
+	"github.com/farshmak/gogs/models/errors"
+	"github.com/farshmak/gogs/pkg/context"
+	"github.com/farshmak/gogs/pkg/setting"
+	"github.com/farshmak/gogs/pkg/tool"
 )
 
 const (

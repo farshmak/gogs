@@ -8,11 +8,11 @@ import (
 	"io"
 	"path"
 
-	"github.com/gogits/git-module"
+	"github.com/farshmak/git-module"
 
-	"github.com/gogits/gogs/pkg/tool"
-	"github.com/gogits/gogs/pkg/context"
-	"github.com/gogits/gogs/pkg/setting"
+	"github.com/farshmak/gogs/pkg/tool"
+	"github.com/farshmak/gogs/pkg/context"
+	"github.com/farshmak/gogs/pkg/setting"
 )
 
 func ServeData(c *context.Context, name string, reader io.Reader) error {

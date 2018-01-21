@@ -5,13 +5,13 @@
 package user
 
 import (
-	api "github.com/gogits/go-gogs-client"
+	api "github.com/farshmak/go-gogs-client"
 
-	"github.com/gogits/gogs/models"
-	"github.com/gogits/gogs/pkg/context"
+	"github.com/farshmak/gogs/models"
+	"github.com/farshmak/gogs/pkg/context"
 )
 
-// https://github.com/gogits/go-gogs-client/wiki/Users#list-access-tokens-for-a-user
+// https://github.com/farshmak/go-gogs-client/wiki/Users#list-access-tokens-for-a-user
 func ListAccessTokens(c *context.APIContext) {
 	tokens, err := models.ListAccessTokens(c.User.ID)
 	if err != nil {
@@ -26,7 +26,7 @@ func ListAccessTokens(c *context.APIContext) {
 	c.JSON(200, &apiTokens)
 }
 
-// https://github.com/gogits/go-gogs-client/wiki/Users#create-a-access-token
+// https://github.com/farshmak/go-gogs-client/wiki/Users#create-a-access-token
 func CreateAccessToken(c *context.APIContext, form api.CreateAccessTokenOption) {
 	t := &models.AccessToken{
 		UID:  c.User.ID,

@@ -9,10 +9,10 @@ import (
 
 	"github.com/Unknwon/com"
 
-	"github.com/gogits/git-module"
-	api "github.com/gogits/go-gogs-client"
+	"github.com/farshmak/git-module"
+	api "github.com/farshmak/go-gogs-client"
 
-	"github.com/gogits/gogs/models"
+	"github.com/farshmak/gogs/models"
 )
 
 func ToEmail(email *models.EmailAddress) *api.Email {
