@@ -13,9 +13,9 @@ import (
 
 	"github.com/go-xorm/xorm"
 
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/pkg/tool"
+	"github.com/gogits/gogs/pkg/tool"
 )
 
 var labelColorPattern = regexp.MustCompile("#([a-fA-F0-9]{6})")

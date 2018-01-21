@@ -7,10 +7,10 @@ package repo
 import (
 	"time"
 
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/models"
-	"github.com/farshmak/gogs/pkg/context"
+	"github.com/gogits/gogs/models"
+	"github.com/gogits/gogs/pkg/context"
 )
 
 func ListMilestones(c *context.APIContext) {

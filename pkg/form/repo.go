@@ -12,7 +12,7 @@ import (
 	"github.com/go-macaron/binding"
 	"gopkg.in/macaron.v1"
 
-	"github.com/farshmak/gogs/models"
+	"github.com/gogits/gogs/models"
 )
 
 // _______________________________________    _________.______________________ _______________.___.

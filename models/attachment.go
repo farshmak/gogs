@@ -15,7 +15,7 @@ import (
 	"github.com/go-xorm/xorm"
 	gouuid "github.com/satori/go.uuid"
 
-	"github.com/farshmak/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/setting"
 )
 
 // Attachment represent a attachment of issue/comment/release.

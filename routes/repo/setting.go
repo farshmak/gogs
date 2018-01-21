@@ -11,14 +11,14 @@ import (
 
 	log "gopkg.in/clog.v1"
 
-	"github.com/farshmak/git-module"
+	"github.com/gogits/git-module"
 
-	"github.com/farshmak/gogs/models"
-	"github.com/farshmak/gogs/models/errors"
-	"github.com/farshmak/gogs/pkg/context"
-	"github.com/farshmak/gogs/pkg/form"
-	"github.com/farshmak/gogs/pkg/mailer"
-	"github.com/farshmak/gogs/pkg/setting"
+	"github.com/gogits/gogs/models"
+	"github.com/gogits/gogs/models/errors"
+	"github.com/gogits/gogs/pkg/context"
+	"github.com/gogits/gogs/pkg/form"
+	"github.com/gogits/gogs/pkg/mailer"
+	"github.com/gogits/gogs/pkg/setting"
 )
 
 const (

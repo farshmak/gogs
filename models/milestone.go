@@ -11,9 +11,9 @@ import (
 	"github.com/go-xorm/xorm"
 	log "gopkg.in/clog.v1"
 
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/setting"
 )
 
 // Milestone represents a milestone of repository.

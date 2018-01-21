@@ -25,11 +25,11 @@ import (
 	log "gopkg.in/clog.v1"
 	"gopkg.in/ini.v1"
 
-	"github.com/farshmak/go-libravatar"
+	"github.com/gogits/go-libravatar"
 
-	"github.com/farshmak/gogs/pkg/bindata"
-	"github.com/farshmak/gogs/pkg/process"
-	"github.com/farshmak/gogs/pkg/user"
+	"github.com/gogits/gogs/pkg/bindata"
+	"github.com/gogits/gogs/pkg/process"
+	"github.com/gogits/gogs/pkg/user"
 )
 
 type Scheme string
@@ -388,7 +388,7 @@ func getOpenSSHVersion() string {
 		log.Fatal(2, "Fail to get OpenSSH version: %v - %s", err, stderr)
 	}
 
-	// Trim unused information: https://github.com/farshmak/gogs/issues/4507#issuecomment-305150441
+	// Trim unused information: https://github.com/gogits/gogs/issues/4507#issuecomment-305150441
 	version := strings.TrimRight(strings.Fields(stderr)[0], ",1234567890")
 	version = strings.TrimSuffix(strings.TrimPrefix(version, "OpenSSH_"), "p")
 	return version
@@ -505,7 +505,7 @@ func NewContext() {
 	}
 
 	// Check if server is eligible for minimum key size check when user choose to enable.
-	// Windows server and OpenSSH version lower than 5.1 (https://github.com/farshmak/gogs/issues/4507)
+	// Windows server and OpenSSH version lower than 5.1 (https://github.com/gogits/gogs/issues/4507)
 	// are forced to be disabled because the "ssh-keygen" in Windows does not print key type.
 	if SSH.MinimumKeySizeCheck &&
 		(IsWindows || version.Compare(getOpenSSHVersion(), "5.1", "<")) {
@@ -802,7 +802,7 @@ func newSessionService() {
 	SessionConfig.Provider = Cfg.Section("session").Key("PROVIDER").In("memory",
 		[]string{"memory", "file", "redis", "mysql"})
 	SessionConfig.ProviderConfig = strings.Trim(Cfg.Section("session").Key("PROVIDER_CONFIG").String(), "\" ")
-	SessionConfig.CookieName = Cfg.Section("session").Key("COOKIE_NAME").MustString("i_like_farshmak")
+	SessionConfig.CookieName = Cfg.Section("session").Key("COOKIE_NAME").MustString("i_like_gogits")
 	SessionConfig.CookiePath = AppSubURL
 	SessionConfig.Secure = Cfg.Section("session").Key("COOKIE_SECURE").MustBool()
 	SessionConfig.Gclifetime = Cfg.Section("session").Key("GC_INTERVAL_TIME").MustInt64(3600)

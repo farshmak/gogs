@@ -9,7 +9,7 @@ import (
 
 	log "gopkg.in/clog.v1"
 
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 )
 
 // Collaboration represent the relation between an individual and a repository.

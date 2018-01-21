@@ -5,14 +5,14 @@
 package admin
 
 import (
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/pkg/context"
-	"github.com/farshmak/gogs/routes/api/v1/user"
-	"github.com/farshmak/gogs/routes/api/v1/org"
+	"github.com/gogits/gogs/pkg/context"
+	"github.com/gogits/gogs/routes/api/v1/user"
+	"github.com/gogits/gogs/routes/api/v1/org"
 )
 
-// https://github.com/farshmak/go-gogs-client/wiki/Administration-Organizations#create-a-new-organization
+// https://github.com/gogits/go-gogs-client/wiki/Administration-Organizations#create-a-new-organization
 func CreateOrg(c *context.APIContext, form api.CreateOrgOption) {
 	org.CreateOrgForUser(c, form, user.GetUserByParams(c))
 }

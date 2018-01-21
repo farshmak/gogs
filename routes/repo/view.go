@@ -15,15 +15,15 @@ import (
 	"github.com/Unknwon/paginater"
 	log "gopkg.in/clog.v1"
 
-	"github.com/farshmak/git-module"
+	"github.com/gogits/git-module"
 
-	"github.com/farshmak/gogs/models"
-	"github.com/farshmak/gogs/pkg/context"
-	"github.com/farshmak/gogs/pkg/markup"
-	"github.com/farshmak/gogs/pkg/setting"
-	"github.com/farshmak/gogs/pkg/template"
-	"github.com/farshmak/gogs/pkg/template/highlight"
-	"github.com/farshmak/gogs/pkg/tool"
+	"github.com/gogits/gogs/models"
+	"github.com/gogits/gogs/pkg/context"
+	"github.com/gogits/gogs/pkg/markup"
+	"github.com/gogits/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/template"
+	"github.com/gogits/gogs/pkg/template/highlight"
+	"github.com/gogits/gogs/pkg/tool"
 )
 
 const (

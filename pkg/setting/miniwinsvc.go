@@ -7,7 +7,7 @@
 package setting
 
 import (
-	_ "github.com/farshmak/minwinsvc"
+	_ "github.com/gogits/minwinsvc"
 )
 
 func init() {

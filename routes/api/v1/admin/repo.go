@@ -5,14 +5,14 @@
 package admin
 
 import (
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/pkg/context"
-	"github.com/farshmak/gogs/routes/api/v1/repo"
-	"github.com/farshmak/gogs/routes/api/v1/user"
+	"github.com/gogits/gogs/pkg/context"
+	"github.com/gogits/gogs/routes/api/v1/repo"
+	"github.com/gogits/gogs/routes/api/v1/user"
 )
 
-// https://github.com/farshmak/go-gogs-client/wiki/Administration-Repositories#create-a-new-repository
+// https://github.com/gogits/go-gogs-client/wiki/Administration-Repositories#create-a-new-repository
 func CreateRepo(c *context.APIContext, form api.CreateRepoOption) {
 	owner := user.GetUserByParams(c)
 	if c.Written() {

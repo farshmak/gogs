@@ -19,12 +19,12 @@ import (
 	gouuid "github.com/satori/go.uuid"
 	log "gopkg.in/clog.v1"
 
-	api "github.com/farshmak/go-gogs-client"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/models/errors"
-	"github.com/farshmak/gogs/pkg/httplib"
-	"github.com/farshmak/gogs/pkg/setting"
-	"github.com/farshmak/gogs/pkg/sync"
+	"github.com/gogits/gogs/models/errors"
+	"github.com/gogits/gogs/pkg/httplib"
+	"github.com/gogits/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/sync"
 )
 
 var HookQueue = sync.NewUniqueQueue(setting.Webhook.QueueLength)

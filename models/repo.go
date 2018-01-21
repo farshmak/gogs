@@ -23,15 +23,15 @@ import (
 	log "gopkg.in/clog.v1"
 	"gopkg.in/ini.v1"
 
-	git "github.com/farshmak/git-module"
-	api "github.com/farshmak/go-gogs-client"
+	git "github.com/gogits/git-module"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/models/errors"
-	"github.com/farshmak/gogs/pkg/bindata"
-	"github.com/farshmak/gogs/pkg/markup"
-	"github.com/farshmak/gogs/pkg/process"
-	"github.com/farshmak/gogs/pkg/setting"
-	"github.com/farshmak/gogs/pkg/sync"
+	"github.com/gogits/gogs/models/errors"
+	"github.com/gogits/gogs/pkg/bindata"
+	"github.com/gogits/gogs/pkg/markup"
+	"github.com/gogits/gogs/pkg/process"
+	"github.com/gogits/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/sync"
 )
 
 var repoWorkingPool = sync.NewExclusivePool()
@@ -609,7 +609,7 @@ type CloneLink struct {
 
 // ComposeHTTPSCloneURL returns HTTPS clone URL based on given owner and repository name.
 func ComposeHTTPSCloneURL(owner, repo string) string {
-	return fmt.Sprintf("%s%s/%s.git", "https://"/*setting.AppURL*/, owner, repo)
+	return fmt.Sprintf("%s%s/%s.git", setting.AppURL, owner, repo)
 }
 
 func (repo *Repository) cloneLink(isWiki bool) *CloneLink {

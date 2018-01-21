@@ -26,13 +26,13 @@ import (
 	"golang.org/x/crypto/pbkdf2"
 	log "gopkg.in/clog.v1"
 
-	"github.com/farshmak/git-module"
-	api "github.com/farshmak/go-gogs-client"
+	"github.com/gogits/git-module"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/models/errors"
-	"github.com/farshmak/gogs/pkg/avatar"
-	"github.com/farshmak/gogs/pkg/setting"
-	"github.com/farshmak/gogs/pkg/tool"
+	"github.com/gogits/gogs/models/errors"
+	"github.com/gogits/gogs/pkg/avatar"
+	"github.com/gogits/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/tool"
 )
 
 type UserType int

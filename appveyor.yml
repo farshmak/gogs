@@ -1,6 +1,6 @@
 version: "{build}"
 skip_tags: true
-clone_folder: c:\gopath\src\github.com\farshmak\gogs
+clone_folder: c:\gopath\src\github.com\gogits\gogs
 clone_depth: 1
 
 environment:

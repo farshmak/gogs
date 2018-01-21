@@ -13,11 +13,11 @@ import (
 	"github.com/go-xorm/xorm"
 	log "gopkg.in/clog.v1"
 
-	"github.com/farshmak/git-module"
-	api "github.com/farshmak/go-gogs-client"
+	"github.com/gogits/git-module"
+	api "github.com/gogits/go-gogs-client"
 
-	"github.com/farshmak/gogs/models/errors"
-	"github.com/farshmak/gogs/pkg/process"
+	"github.com/gogits/gogs/models/errors"
+	"github.com/gogits/gogs/pkg/process"
 )
 
 // Release represents a release of repository.

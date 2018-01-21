@@ -15,10 +15,10 @@ import (
 
 	"github.com/Unknwon/com"
 
-	"github.com/farshmak/git-module"
+	"github.com/gogits/git-module"
 
-	"github.com/farshmak/gogs/pkg/setting"
-	"github.com/farshmak/gogs/pkg/sync"
+	"github.com/gogits/gogs/pkg/setting"
+	"github.com/gogits/gogs/pkg/sync"
 )
 
 var wikiWorkingPool = sync.NewExclusivePool()
