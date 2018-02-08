@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"strings"
 	"time"
+	"path"
 
 	"github.com/gogits/git-module"
 
@@ -40,6 +41,40 @@ type PageMeta struct {
 	Name    string
 	URL     string
 	Updated time.Time
+}
+
+func WikiServeBlob(c *context.Context, blob *git.Blob) error {
+	dataRc, err := blob.Data()
+	if err != nil {
+		return err
+	}
+
+	return ServeData(c, path.Base(c.Params("*")), dataRc)
+}
+
+func WikiSingleDownload(c *context.Context) {
+	wikiRepo, err := git.OpenRepository(c.Repo.Repository.WikiPath())
+	if err != nil {
+		c.Handle(500, "OpenRepository", err)
+		return
+	}
+	commit, err := wikiRepo.GetBranchCommit("master")
+	if err != nil {
+		c.Handle(500, "GetBranchCommit", err)
+		return
+	}
+	blob, err := commit.GetBlobByPath(c.Params("*"))
+	if err != nil {
+		if git.IsErrNotExist(err) {
+			c.Handle(404, "GetBlobByPath", nil)
+		} else {
+			c.Handle(500, "GetBlobByPath", err)
+		}
+		return
+	}
+	if err = WikiServeBlob(c, blob); err != nil {
+		c.Handle(500, "WikiServeBlob", err)
+	}
 }
 
 func renderWikiPage(c *context.Context, isViewPage bool) (*git.Repository, string) {

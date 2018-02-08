@@ -295,7 +295,7 @@ func RepoRef() macaron.Handler {
 		}
 
 		// Get default branch.
-		if len(c.Params("*")) == 0 {
+		if len(c.Params("*")) == 0 || strings.Contains(c.Link, "/wiki/file/") {
 			refName = c.Repo.Repository.DefaultBranch
 			if !c.Repo.GitRepo.IsBranchExist(refName) {
 				brs, err := c.Repo.GitRepo.GetBranches()
