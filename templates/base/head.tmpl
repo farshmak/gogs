@@ -58,9 +58,11 @@
 		</script>
 	{{end}}
 
-	<script src= "{{AppSubURL}}/js/libs/sorttable.js"></script>
-
 	<!-- Stylesheet -->
+	<style>
+    /* filter table specific styling */
+    td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+    </style>
 	<link rel="stylesheet" href="{{AppSubURL}}/css/semantic-2.2.13.min.css">
 	<link rel="stylesheet" href="{{AppSubURL}}/css/gogs.css?v={{MD5 AppVer}}">
 
