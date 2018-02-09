@@ -498,6 +498,7 @@ func runWeb(c *cli.Context) error {
 	}, reqSignIn, context.RepoAssignment(true))
 	m.Group("/:username/:reponame", func() {
 		m.Group("/wiki", func() {
+			m.Get("/file/*", repo.WikiSingleDownload)
 			m.Get("/?:page", repo.Wiki)
 			m.Get("/_pages", repo.WikiPages)
 		}, repo.MustEnableWiki, context.RepoRef())

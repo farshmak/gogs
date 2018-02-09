@@ -7,7 +7,7 @@
 	<footer>
 		<div class="ui container">
 			<div class="ui left">
-				© 2017 Gogs {{if (or .ShowFooterVersion .PageIsAdmin)}}{{.i18n.Tr "version"}}: {{AppVer}}{{end}} {{if ShowFooterTemplateLoadTime}}{{.i18n.Tr "page"}}: <strong>{{LoadTimes .PageStartTime}}</strong> {{.i18n.Tr "template"}}: <strong>{{call .TmplLoadTimes}}</strong>{{end}}
+				© 2018 Gogs {{if (or .ShowFooterVersion .PageIsAdmin)}}{{.i18n.Tr "version"}}: {{AppVer}}{{end}} {{if ShowFooterTemplateLoadTime}}{{.i18n.Tr "page"}}: <strong>{{LoadTimes .PageStartTime}}</strong> {{.i18n.Tr "template"}}: <strong>{{call .TmplLoadTimes}}</strong>{{end}}
 			</div>
 			<div class="ui right links">
 				{{if .ShowFooterBranding}}
@@ -33,6 +33,14 @@
 </body>
 
 <!-- Third-party libraries -->
+    <script src= "{{AppSubURL}}/js/libs/sorttable.js"></script>
+
+    <script src="{{AppSubURL}}/js/libs/jquery.filtertable.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('table').filterTable({minRows: 2, label: '', placeholder: 'Search this table'});
+    });
+    </script>
 {{if .RequireHighlightJS}}
 	<link rel="stylesheet" href="{{AppSubURL}}/plugins/highlight-9.6.0/github.css">
 	<script src="{{AppSubURL}}/plugins/highlight-9.6.0/highlight.pack.js"></script>

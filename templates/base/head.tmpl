@@ -59,6 +59,13 @@
 	{{end}}
 
 	<!-- Stylesheet -->
+	<style>
+    /* filter table specific styling */
+    td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+	.filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+	.fitler-table .quick:hover { text-decoration: underline; }
+	input { border: none; border-bottom: 2px solid #DDD }
+    </style>
 	<link rel="stylesheet" href="{{AppSubURL}}/css/semantic-2.2.13.min.css">
 	<link rel="stylesheet" href="{{AppSubURL}}/css/gogs.css?v={{MD5 AppVer}}">
 
