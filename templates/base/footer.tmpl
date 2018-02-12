@@ -38,7 +38,7 @@
     <script src="{{AppSubURL}}/js/libs/jquery.filtertable.min.js"></script>
     <script>
     $(document).ready(function() {
-        $('table').filterTable({minRows: 2, label: '', placeholder: 'Search this table'});
+        $('table').filterTable({minRows: 2, containerTag: 'div', label: '', placeholder: 'Search this table'});
     });
     </script>
 {{if .RequireHighlightJS}}
