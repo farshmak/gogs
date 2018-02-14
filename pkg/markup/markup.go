@@ -56,6 +56,8 @@ var (
 	// FIXME: this pattern matches pure numbers as well, right now we do a hack to check in RenderSha1CurrentPattern
 	// by converting string to a number.
 	Sha1CurrentPattern = regexp.MustCompile(`\b[0-9a-f]{40}\b`)
+
+	WikiPagePattern = regexp.MustCompile(`^.+/wiki/file/[^.]+$`)
 )
 
 // FindAllMentions matches mention patterns in given content
@@ -171,6 +173,29 @@ var (
 
 var noEndTags = []string{"input", "br", "hr", "img"}
 
+func isWikiPage(link []byte) bool {
+	return WikiPagePattern.Match(link)
+}
+
+func processWikiPage(buf *bytes.Buffer, token html.Token) {
+	var href string
+	for i := range token.Attr {
+		if token.Attr[i].Key == "href" {
+			href = token.Attr[i].Val
+		}
+	}
+
+	if !isWikiPage([]byte(href)) || len(href) == 0 {
+		buf.WriteString(token.String())
+		return
+	}
+
+	href = strings.Replace(href, "/wiki/file", "/wiki", 1)
+	buf.WriteString(`<a href="`)
+	buf.WriteString(href)
+	buf.WriteString(`">`)
+}
+
 // wrapImgWithLink warps link to standalone <img> tags.
 func wrapImgWithLink(urlPrefix string, buf *bytes.Buffer, token html.Token) {
 	// Extract "src" and "alt" attributes
@@ -248,6 +273,11 @@ OUTER_LOOP:
 
 			if tagName == "img" {
 				wrapImgWithLink(urlPrefix, buf, token)
+				continue OUTER_LOOP
+			}
+
+			if tagName == "a" {
+				processWikiPage(buf, token)
 				continue OUTER_LOOP
 			}
 
