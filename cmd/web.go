@@ -169,7 +169,6 @@ func runWeb(c *cli.Context) error {
 	ignSignIn := context.Toggle(&context.ToggleOptions{SignInRequired: setting.Service.RequireSignInView})
 	ignSignInAndCsrf := context.Toggle(&context.ToggleOptions{DisableCSRF: true})
 	reqSignOut := context.Toggle(&context.ToggleOptions{SignOutRequired: true})
-	adminReq := context.Toggle(&context.ToggleOptions{SignInRequired: true, AdminRequired: true})
 
 	bindIgnErr := binding.BindIgnErr
 
@@ -184,7 +183,7 @@ func runWeb(c *cli.Context) error {
 		m.Get("/repos", routes.ExploreRepos)
 		m.Get("/organizations", routes.ExploreOrganizations)
 		m.Group("", func() {
-			m.Get("/users", routes.ExploreUsers, adminReq)
+			m.Get("/users", routes.ExploreUsers)
 		}, func(c *context.Context) {
 			if !c.User.IsAdmin {
 				c.NotFound()
@@ -257,6 +256,8 @@ func runWeb(c *cli.Context) error {
 		m.Get("/logout", user.SignOut)
 	})
 	// ***** END: User *****
+
+	adminReq := context.Toggle(&context.ToggleOptions{SignInRequired: true, AdminRequired: true})
 
 	// ***** START: Admin *****
 	m.Group("/admin", func() {
