@@ -38,6 +38,7 @@ type EditUserOption struct {
 	Website          string `json:"website" binding:"MaxSize(50)"`
 	Location         string `json:"location" binding:"MaxSize(50)"`
 	Active           *bool  `json:"active"`
+	Group            *bool  `json:"group"`
 	Admin            *bool  `json:"admin"`
 	AllowGitHook     *bool  `json:"allow_git_hook"`
 	AllowImportLocal *bool  `json:"allow_import_local"`

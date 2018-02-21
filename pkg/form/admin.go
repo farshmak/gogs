@@ -32,6 +32,7 @@ type AdminEditUser struct {
 	Location         string `binding:"MaxSize(50)"`
 	MaxRepoCreation  int
 	Active           bool
+	Group            bool
 	Admin            bool
 	AllowGitHook     bool
 	AllowImportLocal bool

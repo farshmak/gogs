@@ -181,8 +181,14 @@ func runWeb(c *cli.Context) error {
 			c.Redirect(setting.AppSubURL + "/explore/repos")
 		})
 		m.Get("/repos", routes.ExploreRepos)
-		m.Get("/users", routes.ExploreUsers)
 		m.Get("/organizations", routes.ExploreOrganizations)
+		m.Group("", func() {
+			m.Get("/users", routes.ExploreUsers)
+		}, func(c *context.Context) {
+			if !c.User.IsAdmin {
+				c.NotFound()
+			}
+		})
 	}, ignSignIn)
 	m.Combo("/install", routes.InstallInit).Get(routes.Install).
 		Post(bindIgnErr(form.Install{}), routes.InstallPost)
@@ -239,6 +245,10 @@ func runWeb(c *cli.Context) error {
 		m.Route("/delete", "GET,POST", user.SettingsDelete)
 	}, reqSignIn, func(c *context.Context) {
 		c.Data["PageIsUserSettings"] = true
+	}, func(c *context.Context) {
+		if c.User.IsGroup {
+			c.NotFound()
+		}
 	})
 
 	m.Group("/user", func() {

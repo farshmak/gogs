@@ -103,6 +103,9 @@ func EditUser(c *context.APIContext, form api.EditUserOption) {
 	if form.Active != nil {
 		u.IsActive = *form.Active
 	}
+	if form.Group != nil {
+		u.IsGroup = *form.Group
+	}
 	if form.Admin != nil {
 		u.IsAdmin = *form.Admin
 	}
