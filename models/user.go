@@ -75,6 +75,7 @@ type User struct {
 
 	// Permissions
 	IsActive         bool // Activate primary email
+	IsGroup          bool
 	IsAdmin          bool
 	AllowGitHook     bool
 	AllowImportLocal bool // Allow migrate repository by local path

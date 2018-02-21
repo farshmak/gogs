@@ -209,6 +209,7 @@ func EditUserPost(c *context.Context, f form.AdminEditUser) {
 	u.Location = f.Location
 	u.MaxRepoCreation = f.MaxRepoCreation
 	u.IsActive = f.Active
+	u.IsGroup = f.Group
 	u.IsAdmin = f.Admin
 	u.AllowGitHook = f.AllowGitHook
 	u.AllowImportLocal = f.AllowImportLocal

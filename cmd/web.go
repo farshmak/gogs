@@ -245,6 +245,10 @@ func runWeb(c *cli.Context) error {
 		m.Route("/delete", "GET,POST", user.SettingsDelete)
 	}, reqSignIn, func(c *context.Context) {
 		c.Data["PageIsUserSettings"] = true
+	}, func(c *context.Context) {
+		if c.User.IsGroup {
+			c.NotFound()
+		}
 	})
 
 	m.Group("/user", func() {
