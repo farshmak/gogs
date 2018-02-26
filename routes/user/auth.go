@@ -17,6 +17,7 @@ import (
 	"github.com/gogits/gogs/pkg/form"
 	"github.com/gogits/gogs/pkg/mailer"
 	"github.com/gogits/gogs/pkg/setting"
+	"github.com/haisum/recaptcha"
 )
 
 const (
@@ -81,6 +82,9 @@ func isValidRedirect(url string) bool {
 
 func Login(c *context.Context) {
 	c.Data["Title"] = c.Tr("sign_in")
+	c.Data["IsLoginPage"] = true
+	c.Data["EnableRecaptcha"] = setting.EnableRecaptcha
+	c.Data["SiteKey"] = setting.RecaptchaSiteKey
 
 	// Check auto-login.
 	isSucceed, err := AutoLogin(c)
@@ -139,6 +143,20 @@ func afterLogin(c *context.Context, u *models.User, remember bool) {
 
 func LoginPost(c *context.Context, f form.SignIn) {
 	c.Data["Title"] = c.Tr("sign_in")
+	c.Data["IsLoginPage"] = true
+	c.Data["EnableRecaptcha"] = setting.EnableRecaptcha
+	c.Data["SiteKey"] = setting.RecaptchaSiteKey
+
+	if setting.EnableRecaptcha {
+		re := recaptcha.R{
+			Secret: setting.RecaptchaSecretKey,
+		}
+		isValidRecaptcha := re.Verify(*c.Req.Request)
+		if !isValidRecaptcha {
+			c.RenderWithErr(c.Tr("form.captcha_incorrect"), LOGIN, &f)
+			return
+		}
+	}
 
 	if c.HasError() {
 		c.Success(LOGIN)

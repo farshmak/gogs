@@ -106,6 +106,10 @@ var (
 	ReverseProxyAuthUser    string
 	EnableLoginStatusCookie bool
 	LoginStatusCookieName   string
+	// Google Recaptcha
+	EnableRecaptcha    bool
+	RecaptchaSiteKey   string
+	RecaptchaSecretKey string
 
 	// Database settings
 	UseSQLite3    bool
@@ -534,6 +538,9 @@ func NewContext() {
 	ReverseProxyAuthUser = sec.Key("REVERSE_PROXY_AUTHENTICATION_USER").MustString("X-WEBAUTH-USER")
 	EnableLoginStatusCookie = sec.Key("ENABLE_LOGIN_STATUS_COOKIE").MustBool(false)
 	LoginStatusCookieName = sec.Key("LOGIN_STATUS_COOKIE_NAME").MustString("login_status")
+	EnableRecaptcha = sec.Key("ENABLE_RECAPTCHA").MustBool(false)
+	RecaptchaSiteKey = sec.Key("RECAPTCHA_SITE_KEY").String()
+	RecaptchaSecretKey = sec.Key("RECAPTCHA_SECRET_KEY").String()
 
 	sec = Cfg.Section("attachment")
 	AttachmentPath = sec.Key("PATH").MustString(path.Join(AppDataPath, "attachments"))

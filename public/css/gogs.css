@@ -132,6 +132,9 @@ code.wrap {
 .following.bar .right.menu .dropdown .menu {
   margin-top: 0;
 }
+.g-recaptcha {
+  display: inline-block;
+}
 .ui.left {
   float: left;
 }
