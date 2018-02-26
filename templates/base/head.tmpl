@@ -58,6 +58,10 @@
 		</script>
 	{{end}}
 
+	{{if (and .IsLoginPage .EnableRecaptcha)}}
+	    <script src='https://www.google.com/recaptcha/api.js'></script>
+	{{end}}
+
 	<!-- Stylesheet -->
 	<style>
     /* filter table specific styling */

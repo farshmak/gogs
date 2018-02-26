@@ -24,7 +24,12 @@
 							<input name="remember" type="checkbox">
 						</div>
 					</div>
-
+					{{if (and .IsLoginPage .EnableRecaptcha)}}
+					    <div class="inline field">
+						    <label></label>
+							<div class="ui g-recaptcha" data-sitekey="{{.SiteKey}}"></div>
+					    </div>
+					{{end}}
 					<div class="inline field">
 						<label></label>
 						<button class="ui green button">{{.i18n.Tr "sign_in"}}</button>
