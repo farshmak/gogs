@@ -33,7 +33,7 @@ func GetRawFile(c *context.APIContext) {
 		}
 		return
 	}
-	if err = repo.ServeBlob(c.Context, blob); err != nil {
+	if err = repo.ServeBlob(c.Context, blob, false); err != nil {
 		c.Error(500, "ServeBlob", err)
 	}
 }

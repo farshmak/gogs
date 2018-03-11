@@ -332,7 +332,7 @@ func runWeb(c *cli.Context) error {
 			c.Header().Set("Cache-Control", "public,max-age=86400")
 			fmt.Println("attach.Name:", attach.Name)
 			c.Header().Set("Content-Disposition", fmt.Sprintf(`inline; filename="%s"`, attach.Name))
-			if err = repo.ServeData(c, attach.Name, fr); err != nil {
+			if err = repo.ServeData(c, attach.Name, fr, false); err != nil {
 				c.Handle(500, "ServeData", err)
 				return
 			}
@@ -624,6 +624,7 @@ func runWeb(c *cli.Context) error {
 		m.Group("", func() {
 			m.Get("/src/*", repo.Home)
 			m.Get("/raw/*", repo.SingleDownload)
+			m.Get("/download/*", repo.SingleFileDownload)
 			m.Get("/commits/*", repo.RefCommits)
 			m.Get("/commit/:sha([a-f0-9]{7,40})$", repo.Diff)
 			m.Get("/forks", repo.Forks)
