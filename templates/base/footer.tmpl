@@ -54,8 +54,11 @@
 	<script src="{{AppSubURL}}/plugins/jquery.datetimepicker-2.4.5/jquery.datetimepicker.js"></script>
 {{end}}
 {{if .RequireDropzone}}
-	<link rel="stylesheet" href="{{AppSubURL}}/plugins/dropzone-4.2.0/dropzone.css">
-	<script src="{{AppSubURL}}/plugins/dropzone-4.2.0/dropzone.js"></script>
+	<link rel="stylesheet" href="{{AppSubURL}}/plugins/dropzone-4.2.0/dropzone.min.css">
+	<script src="{{AppSubURL}}/plugins/dropzone-4.2.0/dropzone.min.js"></script>
+	<script type="text/javascript"> // Immediately after the js include
+	    Dropzone.autoDiscover = false;
+	</script>
 {{end}}
 <script src="{{AppSubURL}}/js/libs/emojify-1.1.0.min.js"></script>
 <script src="{{AppSubURL}}/js/libs/clipboard-1.5.9.min.js"></script>

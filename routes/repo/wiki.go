@@ -6,9 +6,9 @@ package repo
 
 import (
 	"io/ioutil"
+	"path"
 	"strings"
 	"time"
-	"path"
 
 	"github.com/gogits/git-module"
 
@@ -49,7 +49,7 @@ func WikiServeBlob(c *context.Context, blob *git.Blob) error {
 		return err
 	}
 
-	return ServeData(c, path.Base(c.Params("*")), dataRc)
+	return ServeData(c, path.Base(c.Params("*")), dataRc, false)
 }
 
 func WikiSingleDownload(c *context.Context) {
@@ -141,7 +141,7 @@ func renderWikiPage(c *context.Context, isViewPage bool) (*git.Repository, strin
 		return nil, ""
 	}
 	if isViewPage {
-		c.Data["content"] = string(markup.Markdown(data, c.Repo.RepoLink + "/wiki/file", c.Repo.Repository.ComposeMetas()))
+		c.Data["content"] = string(markup.Markdown(data, c.Repo.RepoLink+"/wiki/file", c.Repo.Repository.ComposeMetas()))
 	} else {
 		c.Data["content"] = string(data)
 	}

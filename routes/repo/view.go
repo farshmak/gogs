@@ -122,7 +122,7 @@ func renderDirectory(c *context.Context, treeLink string) {
 	}
 }
 
-func renderFile(c *context.Context, entry *git.TreeEntry, treeLink, rawLink string) {
+func renderFile(c *context.Context, entry *git.TreeEntry, treeLink, rawLink string, downloadLink string) {
 	c.Data["IsViewFile"] = true
 
 	blob := entry.Blob()
@@ -136,6 +136,7 @@ func renderFile(c *context.Context, entry *git.TreeEntry, treeLink, rawLink stri
 	c.Data["FileName"] = blob.Name()
 	c.Data["HighlightClass"] = highlight.FileNameToHighlightClass(blob.Name())
 	c.Data["RawFileLink"] = rawLink + "/" + c.Repo.TreePath
+	c.Data["DownloadFileLink"] = downloadLink + "/" + c.Repo.TreePath
 
 	buf := make([]byte, 1024)
 	n, _ := dataRc.Read(buf)
@@ -254,6 +255,7 @@ func Home(c *context.Context) {
 	branchLink := c.Repo.RepoLink + "/src/" + c.Repo.BranchName
 	treeLink := branchLink
 	rawLink := c.Repo.RepoLink + "/raw/" + c.Repo.BranchName
+	downloadLink := c.Repo.RepoLink + "/download/" + c.Repo.BranchName
 
 	isRootDir := false
 	if len(c.Repo.TreePath) > 0 {
@@ -282,7 +284,7 @@ func Home(c *context.Context) {
 	if entry.IsDir() {
 		renderDirectory(c, treeLink)
 	} else {
-		renderFile(c, entry, treeLink, rawLink)
+		renderFile(c, entry, treeLink, rawLink, downloadLink)
 	}
 	if c.Written() {
 		return

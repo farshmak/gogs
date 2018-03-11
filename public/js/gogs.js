@@ -1198,9 +1198,6 @@ $(document).ready(function () {
     // Dropzone
     var $dropzone = $('#dropzone');
     if ($dropzone.length > 0) {
-        // Disable auto discover for all elements:
-        Dropzone.autoDiscover = false;
-
         var filenameDict = {};
         $dropzone.dropzone({
             url: $dropzone.data('upload-url'),
