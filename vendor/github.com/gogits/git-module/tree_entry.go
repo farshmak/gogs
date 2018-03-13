@@ -7,7 +7,6 @@ package git
 import (
 	"fmt"
 	"path"
-	"path/filepath"
 	"runtime"
 	"sort"
 	"strconv"
@@ -176,12 +175,7 @@ func (tes Entries) GetCommitsInfoWithCustomConcurrency(commit *Commit, treePath 
 		if tes[i].Type != OBJECT_COMMIT {
 			go func(i int) {
 				cinfo := commitInfo{entryName: tes[i].Name()}
-				c, err := commit.GetCommitByPath(filepath.Join(treePath, tes[i].Name()))
-				if err != nil {
-					cinfo.err = fmt.Errorf("GetCommitByPath (%s/%s): %v", treePath, tes[i].Name(), err)
-				} else {
-					cinfo.infos = []interface{}{tes[i], c}
-				}
+				cinfo.infos = []interface{}{tes[i], nil}
 				revChan <- cinfo
 				<-taskChan // Clear one slot from taskChan to allow new goroutines to start.
 			}(i)
@@ -203,12 +197,8 @@ func (tes Entries) GetCommitsInfoWithCustomConcurrency(commit *Commit, treePath 
 				smURL = sm.URL
 			}
 
-			c, err := commit.GetCommitByPath(filepath.Join(treePath, tes[i].Name()))
-			if err != nil {
-				cinfo.err = fmt.Errorf("GetCommitByPath (%s/%s): %v", treePath, tes[i].Name(), err)
-			} else {
-				cinfo.infos = []interface{}{tes[i], NewSubModuleFile(c, smURL, tes[i].ID.String())}
-			}
+			cinfo.infos = []interface{}{tes[i], NewSubModuleFile(nil, smURL, tes[i].ID.String())}
+
 			revChan <- cinfo
 			<-taskChan
 		}(i)
