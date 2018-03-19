@@ -136,7 +136,7 @@ func renderFile(c *context.Context, entry *git.TreeEntry, treeLink, rawLink stri
 	c.Data["FileName"] = blob.Name()
 	c.Data["HighlightClass"] = highlight.FileNameToHighlightClass(blob.Name())
 	c.Data["RawFileLink"] = rawLink + "/" + c.Repo.TreePath
-	c.Data["DownloadFileLink"] = downloadLink + "/" + c.Repo.TreePath
+	c.Data["DownloadFileLink"] = downloadLink
 
 	buf := make([]byte, 1024)
 	n, _ := dataRc.Read(buf)
@@ -260,6 +260,7 @@ func Home(c *context.Context) {
 	isRootDir := false
 	if len(c.Repo.TreePath) > 0 {
 		treeLink += "/" + c.Repo.TreePath
+		downloadLink += "/" + c.Repo.TreePath
 	} else {
 		isRootDir = true
 
@@ -311,6 +312,7 @@ func Home(c *context.Context) {
 
 	c.Data["Paths"] = paths
 	c.Data["TreeLink"] = treeLink
+	c.Data["DownloadFileLink"] = downloadLink
 	c.Data["TreeNames"] = treeNames
 	c.Data["BranchLink"] = branchLink
 	c.HTML(200, HOME)

@@ -22,10 +22,11 @@ func ServeData(c *context.Context, name string, reader io.Reader, isAttachable b
 	if n >= 0 {
 		buf = buf[:n]
 	}
-	if (!tool.IsTextFile(buf) && !tool.IsImageFile(buf)) || isAttachable {
+
+	if isAttachable || (!tool.IsTextFile(buf) && !tool.IsImageFile(buf)) {
 		c.Resp.Header().Set("Content-Disposition", fmt.Sprintf(`attachment; filename="%s"`, name))
 		c.Resp.Header().Set("Content-Transfer-Encoding", "binary")
-	} else if !setting.Repository.EnableRawFileRenderMode || !c.QueryBool("render") {
+	} else if (!setting.Repository.EnableRawFileRenderMode || !c.QueryBool("render")) && !tool.IsImageFile(buf) {
 		c.Resp.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	}
 	c.Resp.Write(buf)
