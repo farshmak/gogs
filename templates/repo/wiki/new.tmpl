@@ -7,6 +7,7 @@
 			{{if .PageIsWikiEdit}}{{.i18n.Tr "repo.wiki.edit_page"}}{{else}}{{.i18n.Tr "repo.wiki.new_page"}}{{end}}
 			<div class="ui right">
 				<button class="ui green small button" form="wiki-form">
+					<i class="save icon"></i>
 					{{.i18n.Tr "repo.wiki.save_page"}}
 				</button>
 			</div>
@@ -24,7 +25,8 @@
 				<input name="message" placeholder="{{.i18n.Tr "repo.wiki.default_commit_message"}}">
 			</div>
 			<div class="text right">
-				<button class="ui green button">
+				<button class="ui green small button">
+					<i class="save icon"></i>
 					{{.i18n.Tr "repo.wiki.save_page"}}
 				</button>
 			</div>
