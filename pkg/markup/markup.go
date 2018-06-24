@@ -95,7 +95,6 @@ func RenderIssueIndexPattern(rawBytes []byte, urlPrefix string, metas map[string
 		pattern = IssueAlphanumericPattern
 	}
 	ms := pattern.FindAll(rawBytes, -1)
-	fmt.Println(ms)
 	for _, m := range ms {
 		if m[0] == ' ' || m[0] == '(' {
 			m = m[1:] // ignore leading space or opening parentheses
