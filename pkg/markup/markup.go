@@ -47,7 +47,7 @@ var (
 	// IssueNumericPattern matches string that references to a numeric issue, e.g. #1287
 	IssueNumericPattern = regexp.MustCompile(`( |^|\()#[0-9]+\b`)
 	// IssueAlphanumericPattern matches string that references to an alphanumeric issue, e.g. ABC-1234
-	IssueAlphanumericPattern = regexp.MustCompile(`( |^|\()[A-Z]{1,10}-[1-9][0-9]*\b`)
+	IssueAlphanumericPattern = regexp.MustCompile(`(|^|\()[A-Z]{1,10}-[1-9][0-9]*\b`)
 	// CrossReferenceIssueNumericPattern matches string that references a numeric issue in a difference repository
 	// e.g. gogits/gogs#12345
 	CrossReferenceIssueNumericPattern = regexp.MustCompile(`( |^)[0-9a-zA-Z-_\.]+/[0-9a-zA-Z-_\.]+#[0-9]+\b`)
@@ -94,7 +94,6 @@ func RenderIssueIndexPattern(rawBytes []byte, urlPrefix string, metas map[string
 	if metas["style"] == ISSUE_NAME_STYLE_ALPHANUMERIC {
 		pattern = IssueAlphanumericPattern
 	}
-
 	ms := pattern.FindAll(rawBytes, -1)
 	for _, m := range ms {
 		if m[0] == ' ' || m[0] == '(' {
@@ -110,7 +109,9 @@ func RenderIssueIndexPattern(rawBytes []byte, urlPrefix string, metas map[string
 			} else {
 				metas["index"] = string(m[1:])
 			}
-			link = fmt.Sprintf(`<a href="%s">%s</a>`, com.Expand(metas["format"], metas), m)
+			//link = fmt.Sprintf(`<a href="%s">%s</a>`, com.Expand(metas["format"], metas), m)
+			link = fmt.Sprintf(`<a class="ui blue sha label" href="%s">%s</a>`,
+				com.Expand(metas["format"], metas), m)
 		}
 		rawBytes = bytes.Replace(rawBytes, m, []byte(link), 1)
 	}

@@ -173,8 +173,10 @@ func Diff(c *context.Context) {
 	c.Data["Parents"] = parents
 	c.Data["DiffNotAvailable"] = diff.NumFiles() == 0
 	c.Data["SourcePath"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "src", commitID)
+	c.Data["SourcePathDownload"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "download", commitID)
 	if commit.ParentCount() > 0 {
 		c.Data["BeforeSourcePath"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "src", parents[0])
+		c.Data["BeforeSourcePathDownload"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "download", parents[0])
 	}
 	c.Data["RawPath"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "raw", commitID)
 	c.HTML(200, DIFF)
@@ -234,7 +236,9 @@ func CompareDiff(c *context.Context) {
 	c.Data["Diff"] = diff
 	c.Data["DiffNotAvailable"] = diff.NumFiles() == 0
 	c.Data["SourcePath"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "src", afterCommitID)
+	c.Data["SourcePathDownload"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "download", afterCommitID)
 	c.Data["BeforeSourcePath"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "src", beforeCommitID)
+	c.Data["BeforeSourcePathDownload"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "download", beforeCommitID)
 	c.Data["RawPath"] = setting.AppSubURL + "/" + path.Join(userName, repoName, "raw", afterCommitID)
 	c.HTML(200, DIFF)
 }
