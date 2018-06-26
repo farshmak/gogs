@@ -100,10 +100,19 @@ func renderWikiPage(c *context.Context, isViewPage bool) (*git.Repository, strin
 		for i := range entries {
 			if entries[i].Type == git.OBJECT_BLOB && strings.HasSuffix(entries[i].Name(), ".md") {
 				name := strings.TrimSuffix(entries[i].Name(), ".md")
-				pages = append(pages, PageMeta{
-					Name: name,
-					URL:  models.ToWikiPageURL(name),
-				})
+				if entries[i].Name() == "Home.md" {
+					pages = append(pages, PageMeta{})
+					copy(pages[1:], pages[0:])
+					pages[0] = PageMeta{
+						Name: name,
+						URL:  models.ToWikiPageURL(name),
+					}
+				} else {
+					pages = append(pages, PageMeta{
+						Name: name,
+						URL:  models.ToWikiPageURL(name),
+					})
+				}
 			}
 		}
 		c.Data["Pages"] = pages
@@ -208,11 +217,21 @@ func WikiPages(c *context.Context) {
 				return
 			}
 			name := strings.TrimSuffix(entries[i].Name(), ".md")
-			pages = append(pages, PageMeta{
-				Name:    name,
-				URL:     models.ToWikiPageURL(name),
-				Updated: commit.Author.When,
-			})
+			if entries[i].Name() == "Home.md" {
+				pages = append(pages, PageMeta{})
+				copy(pages[1:], pages[0:])
+				pages[0] = PageMeta{
+					Name:    name,
+					URL:     models.ToWikiPageURL(name),
+					Updated: commit.Author.When,
+				}
+			} else {
+				pages = append(pages, PageMeta{
+					Name:    name,
+					URL:     models.ToWikiPageURL(name),
+					Updated: commit.Author.When,
+				})
+			}
 		}
 	}
 	c.Data["Pages"] = pages
