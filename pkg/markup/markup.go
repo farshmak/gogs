@@ -56,6 +56,7 @@ var (
 	// FIXME: this pattern matches pure numbers as well, right now we do a hack to check in RenderSha1CurrentPattern
 	// by converting string to a number.
 	Sha1CurrentPattern = regexp.MustCompile(`\b[0-9a-f]{40}\b`)
+	WikiPagePattern    = regexp.MustCompile(`^.+/wiki/file/[^.]+$`)
 )
 
 // FindAllMentions matches mention patterns in given content
@@ -172,6 +173,26 @@ var (
 
 var noEndTags = []string{"input", "br", "hr", "img"}
 
+func isWikiPage(link []byte) bool {
+	return WikiPagePattern.Match(link)
+}
+
+func getWikiPageToken(buf *bytes.Buffer, token html.Token) string {
+	var href string
+	for i := range token.Attr {
+		if token.Attr[i].Key == "href" {
+			href = token.Attr[i].Val
+		}
+	}
+
+	if !isWikiPage([]byte(href)) || len(href) == 0 {
+		return token.String()
+	}
+
+	href = strings.Replace(href, "/wiki/file", "/wiki", 1)
+	return fmt.Sprintf(`<a href="%s">`, href)
+}
+
 // wrapImgWithLink warps link to standalone <img> tags.
 func wrapImgWithLink(urlPrefix string, buf *bytes.Buffer, token html.Token) {
 	// Extract "src" and "alt" attributes
@@ -252,8 +273,13 @@ OUTER_LOOP:
 				continue OUTER_LOOP
 			}
 
-			buf.WriteString(token.String())
-			// If this is an excluded tag, we skip processing all output until a close tag is encountered.
+			if tagName == "a" {
+				buf.WriteString(getWikiPageToken(buf, token))
+			} else {
+				buf.WriteString(token.String())
+			}
+
+			//If this is an excluded tag, we skip processing all output until a close tag is encountered.
 			if strings.EqualFold("a", tagName) || strings.EqualFold("code", tagName) || strings.EqualFold("pre", tagName) {
 				stackNum := 1
 				for html.ErrorToken != tokenizer.Next() {
