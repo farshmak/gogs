@@ -35,6 +35,7 @@ div.filter-table {
 pre,
 code {
   font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  white-space: pre-wrap;
 }
 pre.raw,
 code.raw {

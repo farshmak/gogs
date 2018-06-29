@@ -4,14 +4,18 @@
 	<div class="ui container">
 		<div class="ui header">
 			{{.i18n.Tr "repo.wiki.pages"}}
-			{{if and .IsRepositoryWriter (not .Repository.IsMirror)}}
 			<div class="ui right">
-				<a class="ui green small button" href="{{.RepoLink}}/wiki/_new">
-					<i class="plus icon"></i>
-					{{.i18n.Tr "repo.wiki.new_page_button"}}
+				<a class="ui small button" href="{{.RepoLink}}/wiki/Home">
+					<i class="home icon"></i>
+					{{.i18n.Tr "repo.wiki.home_page"}}
 				</a>
+				{{if and .IsRepositoryWriter (not .Repository.IsMirror)}}
+					<a class="ui green small button" href="{{.RepoLink}}/wiki/_new">
+						<i class="plus icon"></i>
+						{{.i18n.Tr "repo.wiki.new_page_button"}}
+					</a>
+				{{end}}
 			</div>
-			{{end}}
 		</div>
 		<table class="ui table">
 			<tbody>
