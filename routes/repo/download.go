@@ -9,11 +9,11 @@ import (
 	"io"
 	"path"
 
-	"github.com/gogits/git-module"
+	"github.com/gogs/git-module"
 
-	"github.com/gogits/gogs/pkg/context"
-	"github.com/gogits/gogs/pkg/setting"
-	"github.com/gogits/gogs/pkg/tool"
+	"github.com/gogs/gogs/pkg/context"
+	"github.com/gogs/gogs/pkg/setting"
+	"github.com/gogs/gogs/pkg/tool"
 )
 
 func ServeData(c *context.Context, name string, reader io.Reader, isAttachable bool) error {

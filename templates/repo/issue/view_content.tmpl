@@ -209,6 +209,12 @@
 												</div>
 											</div>
 										{{end}}
+										<div class="commit description field">
+											<div class="ui top">
+												<p>{{$.i18n.Tr "repo.pulls.commit_description"}}:</p>
+												<textarea id="commit_description" name="commit_description" tabindex="4" rows="3"></textarea>
+											</div>
+										</div>
 										<button class="ui green button">
 											<span class="octicon octicon-git-merge"></span> {{$.i18n.Tr "repo.pulls.merge_pull_request"}}
 										</button>

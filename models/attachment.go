@@ -15,7 +15,7 @@ import (
 	"github.com/go-xorm/xorm"
 	gouuid "github.com/satori/go.uuid"
 
-	"github.com/gogits/gogs/pkg/setting"
+	"github.com/gogs/gogs/pkg/setting"
 )
 
 // Attachment represent a attachment of issue/comment/release.
@@ -27,7 +27,7 @@ type Attachment struct {
 	ReleaseID int64 `xorm:"INDEX"`
 	Name      string
 
-	Created     time.Time `xorm:"-"`
+	Created     time.Time `xorm:"-" json:"-"`
 	CreatedUnix int64
 }
 

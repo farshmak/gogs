@@ -13,9 +13,9 @@ import (
 
 	"github.com/go-xorm/xorm"
 
-	api "github.com/gogits/go-gogs-client"
+	api "github.com/gogs/go-gogs-client"
 
-	"github.com/gogits/gogs/pkg/tool"
+	"github.com/gogs/gogs/pkg/tool"
 )
 
 var labelColorPattern = regexp.MustCompile("#([a-fA-F0-9]{6})")
@@ -60,8 +60,8 @@ type Label struct {
 	Color           string `xorm:"VARCHAR(7)"`
 	NumIssues       int
 	NumClosedIssues int
-	NumOpenIssues   int  `xorm:"-"`
-	IsChecked       bool `xorm:"-"`
+	NumOpenIssues   int  `xorm:"-" json:"-"`
+	IsChecked       bool `xorm:"-" json:"-"`
 }
 
 func (label *Label) APIFormat() *api.Label {

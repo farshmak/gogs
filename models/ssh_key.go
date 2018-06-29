@@ -23,9 +23,9 @@ import (
 	"golang.org/x/crypto/ssh"
 	log "gopkg.in/clog.v1"
 
-	"github.com/gogits/gogs/pkg/process"
-	"github.com/gogits/gogs/pkg/setting"
-	"github.com/gogits/gogs/pkg/tool"
+	"github.com/gogs/gogs/pkg/process"
+	"github.com/gogs/gogs/pkg/setting"
+	"github.com/gogs/gogs/pkg/tool"
 )
 
 const (
@@ -51,12 +51,12 @@ type PublicKey struct {
 	Mode        AccessMode `xorm:"NOT NULL DEFAULT 2"`
 	Type        KeyType    `xorm:"NOT NULL DEFAULT 1"`
 
-	Created           time.Time `xorm:"-"`
+	Created           time.Time `xorm:"-" json:"-"`
 	CreatedUnix       int64
-	Updated           time.Time `xorm:"-"` // Note: Updated must below Created for AfterSet.
+	Updated           time.Time `xorm:"-" json:"-"` // Note: Updated must below Created for AfterSet.
 	UpdatedUnix       int64
-	HasRecentActivity bool `xorm:"-"`
-	HasUsed           bool `xorm:"-"`
+	HasRecentActivity bool `xorm:"-" json:"-"`
+	HasUsed           bool `xorm:"-" json:"-"`
 }
 
 func (k *PublicKey) BeforeInsert() {
@@ -512,15 +512,17 @@ func DeletePublicKey(doer *User, id int64) (err error) {
 		return err
 	}
 
-	return RewriteAllPublicKeys()
+	return RewriteAuthorizedKeys()
 }
 
-// RewriteAllPublicKeys removes any authorized key and rewrite all keys from database again.
+// RewriteAuthorizedKeys removes any authorized key and rewrite all keys from database again.
 // Note: x.Iterate does not get latest data after insert/delete, so we have to call this function
 // outsite any session scope independently.
-func RewriteAllPublicKeys() error {
+func RewriteAuthorizedKeys() error {
 	sshOpLocker.Lock()
 	defer sshOpLocker.Unlock()
+
+	log.Trace("Doing: RewriteAuthorizedKeys")
 
 	os.MkdirAll(setting.SSH.RootPath, os.ModePerm)
 	fpath := filepath.Join(setting.SSH.RootPath, "authorized_keys")
@@ -566,14 +568,14 @@ type DeployKey struct {
 	RepoID      int64 `xorm:"UNIQUE(s) INDEX"`
 	Name        string
 	Fingerprint string
-	Content     string `xorm:"-"`
+	Content     string `xorm:"-" json:"-"`
 
-	Created           time.Time `xorm:"-"`
+	Created           time.Time `xorm:"-" json:"-"`
 	CreatedUnix       int64
-	Updated           time.Time `xorm:"-"` // Note: Updated must below Created for AfterSet.
+	Updated           time.Time `xorm:"-" json:"-"` // Note: Updated must below Created for AfterSet.
 	UpdatedUnix       int64
-	HasRecentActivity bool `xorm:"-"`
-	HasUsed           bool `xorm:"-"`
+	HasRecentActivity bool `xorm:"-" json:"-"`
+	HasUsed           bool `xorm:"-" json:"-"`
 }
 
 func (k *DeployKey) BeforeInsert() {
